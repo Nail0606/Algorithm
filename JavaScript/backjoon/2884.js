@@ -21,3 +21,4 @@ if (minute >= 45) {
 }
 
 console.log(`${hour} ${minute}`);
+//다시품
