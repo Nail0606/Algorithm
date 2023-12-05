@@ -1,20 +1,23 @@
 let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().split("\n");
-input[0] = input[0].split(" ");
-const cards = input[1].split(" ").map((element) => Number(element));
-const N = Number(input[0][0]);
-const M = Number(input[0][1]);
-let answer = 0;
 
+const N = +input[0].split(" ")[0];
+const M = +input[0].split(" ")[1];
+const CARDS = input[1]
+  .split(" ")
+  .map(Number)
+  .sort((a, b) => b - a);
+let max = 0;
 for (let i = 0; i < N; i++) {
+  const A = CARDS[i];
   for (let j = i + 1; j < N; j++) {
+    const B = CARDS[j];
     for (let k = j + 1; k < N; k++) {
-      const sum = cards[i] + cards[j] + cards[k];
-      const gap = M - sum;
-      if (gap >= 0 && answer <= sum) {
-        answer = sum;
+      const C = CARDS[k];
+      if (A + B + C <= M && A + B + C > max) {
+        max = A + B + C;
       }
     }
   }
 }
-console.log(answer);
+console.log(max);
