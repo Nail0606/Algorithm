@@ -1,24 +1,14 @@
-const fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+var fs = require("fs");
+var input = fs.readFileSync("/dev/stdin").toString().split("\n");
+var cases = input[0];
+var answer = "";
 
-const iter = input.shift();
-
-let ans = [];
-
-for (let i = 0; i < iter; i++) {
-  let sentence = [];
-
-  let arr = input[i].split(" ");
-
-  for (let j = 0; j < arr.length; j++) {
-    let word = arr[j].split("").reverse().join("");
-
-    sentence.push(word);
+for (var i = 1; i <= cases; i++) {
+  var splited = input[i].split(" ");
+  for (var j in splited) {
+    answer = answer + splited[j].split("").reverse().join("") + " ";
   }
-
-  let newSentence = sentence.join(" ");
-
-  ans.push(newSentence);
+  answer += "\n";
 }
 
-console.log(ans.join("\n"));
+console.log(answer);
